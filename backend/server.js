@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const cookieParser = require('cookie-parser');
@@ -43,10 +44,19 @@ app.get('/', (req, res) => {
   res.json({ message: 'GenZ Movie API is running 🎬' });
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
+// Serve frontend
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+  });
+} else {
+  // 404 handler
+  app.use((req, res) => {
+    res.status(404).json({ message: 'Route not found' });
+  });
+}
 
 // Global error handler
 app.use((err, req, res, next) => {
