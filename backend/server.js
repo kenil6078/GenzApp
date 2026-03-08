@@ -20,10 +20,8 @@ connectDB();
 // Middlewares
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-    if (origin.startsWith('http://localhost:')) return callback(null, true);
-    callback(new Error('Not allowed by CORS'));
+    // Accept any origin temporarily for simpler cross-origin testing & deployment
+    callback(null, true);
   },
   credentials: true,
 }));

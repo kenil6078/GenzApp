@@ -2,7 +2,7 @@ export const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 export const TMDB_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL || 'https://api.themoviedb.org/3';
 export const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_BASE_URL || 'https://image.tmdb.org/t/p/original';
 export const TMDB_IMAGE_W500 = 'https://image.tmdb.org/t/p/w500';
-export const API_BASE_URL = '/api';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://genzapp.onrender.com/api';
 
 export const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/300x450/1a1a2e/7c3aed?text=No+Poster';
 

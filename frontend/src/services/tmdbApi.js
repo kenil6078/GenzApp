@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/constants';
 
 // All TMDB API calls go through our Express backend proxy at /api/tmdb/*
 // Vite proxies /api/* → localhost:5000, and the backend proxies to api.themoviedb.org
 // This bypasses: ERR_DNS_NO_MATCHING_SUPPORTED_ALPN (browser) and forces IPv4 on backend
-const PROXY_BASE = '/api/tmdb';
+const PROXY_BASE = `${API_BASE_URL}/tmdb`;
 
 const tmdb = axios.create({
   baseURL: PROXY_BASE,
