@@ -1,0 +1,26 @@
+const mongoose = require('mongoose');
+
+const favoriteSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  tmdbId: {
+    type: Number,
+    required: true,
+  },
+  mediaType: {
+    type: String,
+    enum: ['movie', 'tv'],
+    default: 'movie',
+  },
+  title: { type: String },
+  posterUrl: { type: String },
+  rating: { type: Number },
+  releaseDate: { type: String },
+}, { timestamps: true });
+
+favoriteSchema.index({ userId: 1, tmdbId: 1 }, { unique: true });
+
+module.exports = mongoose.model('Favorite', favoriteSchema);

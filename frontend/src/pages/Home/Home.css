@@ -1,0 +1,196 @@
+.home-page {
+  min-height: 100vh;
+}
+
+/* Hero */
+.hero-section {
+  position: relative;
+  height: 85vh;
+  min-height: 520px;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(5, 5, 15, 0.95) 35%,
+    rgba(5, 5, 15, 0.6) 65%,
+    rgba(5, 5, 15, 0.2) 100%
+  ),
+  linear-gradient(
+    to top,
+    rgba(5, 5, 15, 1) 0%,
+    transparent 40%
+  );
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  padding-top: 80px;
+  max-width: 600px;
+  margin-left: 5%;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(236,72,153,0.3));
+  border: 1px solid rgba(167,139,250,0.4);
+  backdrop-filter: blur(8px);
+  color: #a78bfa;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.hero-overview {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  margin: 0 0 28px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.hero-btn.primary {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.45);
+}
+.hero-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.65);
+}
+
+.hero-btn.secondary {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.hero-btn.secondary:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+
+/* Sections */
+.home-sections {
+  padding: 0 24px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.content-section { width: 100%; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.see-all-link {
+  color: #a78bfa;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.see-all-link:hover { color: #f472b6; }
+
+@media (max-width: 1024px) {
+  .hero-content {
+    margin-left: 3%;
+    max-width: 520px;
+  }
+  .home-sections {
+    padding: 0 20px 50px;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section { height: 70vh; min-height: 440px; }
+  .hero-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(5, 5, 15, 0.95) 0%,
+      rgba(5, 5, 15, 0.8) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(5, 5, 15, 1) 0%,
+      transparent 40%
+    );
+  }
+  .hero-content {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 0 20px;
+    padding-top: 70px;
+  }
+  .hero-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+  .hero-overview { font-size: 0.88rem; }
+  .hero-actions { gap: 10px; }
+  .hero-btn { padding: 11px 20px; font-size: 0.85rem; }
+  .home-sections { padding: 0 16px 40px; gap: 36px; }
+  .section-header h2 { font-size: 1.15rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-section { height: 60vh; min-height: 380px; }
+  .hero-content { padding-top: 68px; }
+  .hero-badge { font-size: 0.72rem; padding: 5px 10px; }
+  .hero-title { font-size: 1.5rem; }
+  .hero-overview { display: none; }
+  .hero-btn.secondary { display: none; }
+  .home-sections { padding: 0 12px 36px; gap: 32px; }
+}

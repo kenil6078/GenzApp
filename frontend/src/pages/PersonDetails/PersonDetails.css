@@ -1,0 +1,80 @@
+.person-details-page {
+  min-height: 100vh;
+  padding: 100px 24px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.person-hero {
+  display: flex;
+  gap: 48px;
+  margin-bottom: 60px;
+  align-items: flex-start;
+}
+
+.person-hero-photo {
+  flex-shrink: 0;
+  width: 240px;
+}
+.person-hero-photo img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.person-hero-info { flex: 1; }
+.person-hero-info h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.person-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.person-dept-badge {
+  padding: 5px 14px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(236,72,153,0.2));
+  border: 1px solid rgba(167,139,250,0.4);
+  border-radius: 8px;
+  color: #a78bfa;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.meta-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+}
+
+.person-bio {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.person-section {
+  margin-bottom: 50px;
+}
+.person-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+@media (max-width: 768px) {
+  .person-details-page { padding: 80px 16px 40px; }
+  .person-hero { flex-direction: column; gap: 24px; }
+  .person-hero-photo { width: 100%; max-width: 200px; }
+}

@@ -1,0 +1,93 @@
+.movies-page {
+  min-height: 100vh;
+  padding: 100px 24px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.movies-header {
+  margin-bottom: 32px;
+}
+
+.movies-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 9px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(167, 139, 250, 0.1);
+  color: #fff;
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(236,72,153,0.2));
+  color: #a78bfa;
+  border-color: rgba(167, 139, 250, 0.5);
+}
+
+.genre-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.genre-btn {
+  padding: 6px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.genre-btn:hover {
+  background: rgba(236, 72, 153, 0.1);
+  color: #f472b6;
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.genre-btn.active {
+  background: rgba(236, 72, 153, 0.2);
+  color: #f472b6;
+  border-color: rgba(236, 72, 153, 0.5);
+}
+
+.end-message {
+  text-align: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.9rem;
+  padding: 30px 0;
+}
+
+@media (max-width: 768px) {
+  .movies-page { padding: 80px 16px 40px; }
+}
