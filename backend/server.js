@@ -45,18 +45,18 @@ app.get('/', (req, res) => {
 });
 
 // Serve frontend
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
-  });
-} else {
-  // 404 handler
-  app.use((req, res) => {
-    res.status(404).json({ message: 'Route not found' });
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+//   });
+// } else {
+//   // 404 handler
+//   app.use((req, res) => {
+//     res.status(404).json({ message: 'Route not found' });
+//   });
+// }
 
 // Global error handler
 app.use((err, req, res, next) => {
