@@ -6,6 +6,11 @@ import { fetchFavorites } from '../../redux/favoriteSlice';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import { SkeletonGrid } from '../../components/Loader/Loader';
 import { TMDB_IMAGE_BASE_URL, PLACEHOLDER_IMAGE } from '../../utils/constants';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
 import './Home.css';
 
 const Home = () => {
@@ -21,39 +26,56 @@ const Home = () => {
     if (userInfo) dispatch(fetchFavorites());
   }, [dispatch, userInfo]);
 
-  const hero = trending[0];
-  const heroTitle = hero?.title || hero?.name || 'Discover Movies';
-  const heroOverview = hero?.overview || '';
-  const heroPoster = hero?.backdrop_path
-    ? `${TMDB_IMAGE_BASE_URL}${hero.backdrop_path}`
-    : PLACEHOLDER_IMAGE;
+  const heroMovies = trending.slice(0, 5);
 
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section
-        className="hero-section"
-        style={{ backgroundImage: `url(${heroPoster})` }}
-        ref={heroRef}
-      >
-        <div className="hero-overlay">
-          <div className="hero-content">
-            <div className="hero-badge">🔥 Trending Now</div>
-            <h1 className="hero-title">{heroTitle}</h1>
-            <p className="hero-overview">{heroOverview.slice(0, 200)}{heroOverview.length > 200 ? '...' : ''}</p>
-            <div className="hero-actions">
-              {hero && (
-                <Link
-                  to={`/${hero.media_type || 'movie'}/${hero.id}`}
-                  className="hero-btn primary"
+      <section className="hero-section" ref={heroRef}>
+        {heroMovies.length > 0 && (
+          <Swiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            effect="fade"
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            loop={true}
+            speed={1000}
+            className="hero-swiper"
+          >
+            {heroMovies.map((movie) => (
+              <SwiperSlide key={movie.id}>
+                <div
+                  className="hero-slide-bg"
+                  style={{
+                    backgroundImage: `url(${movie.backdrop_path ? `${TMDB_IMAGE_BASE_URL}${movie.backdrop_path}` : PLACEHOLDER_IMAGE})`
+                  }}
                 >
-                  ▶ Watch Now
-                </Link>
-              )}
-              <Link to="/movies" className="hero-btn secondary">Explore More</Link>
-            </div>
-          </div>
-        </div>
+                  <div className="hero-overlay">
+                    <div className="hero-content">
+                      <div className="hero-badge">🔥 Trending Now</div>
+                      <h1 className="hero-title">{movie.title || movie.name}</h1>
+                      <p className="hero-overview">
+                        {(movie.overview || '').slice(0, 200)}
+                        {(movie.overview || '').length > 200 ? '...' : ''}
+                      </p>
+                      <div className="hero-actions">
+                        <Link
+                          to={`/${movie.media_type || 'movie'}/${movie.id}`}
+                          className="hero-btn primary"
+                        >
+                          ▶ Watch Now
+                        </Link>
+                        <Link to="/movies" className="hero-btn secondary">
+                          Explore More
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </section>
 
       <div className="home-sections">

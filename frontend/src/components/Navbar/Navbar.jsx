@@ -6,6 +6,13 @@ import { searchContent, clearSearch } from '../../redux/movieSlice';
 import useDebounce from '../../hooks/useDebounce';
 import './Navbar.css';
 
+const SearchSVG = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="search-icon-svg">
+    <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" fill="#a78bfa" fillOpacity="0.25" stroke="#a78bfa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M21.9999 22L15.6569 15.6568" stroke="#a78bfa" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
 const Navbar = () => {
   const [query, setQuery] = useState('');
   const [scrolled, setScrolled] = useState(false);
@@ -102,7 +109,7 @@ const Navbar = () => {
 
         {/* Desktop Search Bar (always visible) */}
         <div className="search-bar-desktop">
-          <span className="search-icon-prefix">🔍</span>
+          <span className="search-icon-prefix"><SearchSVG /></span>
           <input
             ref={inputRef}
             type="text"
@@ -128,7 +135,7 @@ const Navbar = () => {
             onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
             aria-label="Toggle search"
           >
-            {mobileSearchOpen ? '✕' : '🔍'}
+            {mobileSearchOpen ? <span className="close-icon">✕</span> : <SearchSVG />}
           </button>
 
           {/* Auth */}
@@ -179,7 +186,7 @@ const Navbar = () => {
       {/* Mobile Search Bar */}
       {mobileSearchOpen && (
         <div className="mobile-search-bar">
-          <span className="search-icon-prefix">🔍</span>
+          <span className="search-icon-prefix"><SearchSVG /></span>
           <input
             type="text"
             placeholder="Search movies, shows, people..."
