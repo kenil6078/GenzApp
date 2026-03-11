@@ -11,13 +11,13 @@
 .auth-card {
   width: 100%;
   max-width: 440px;
-  background: rgba(15, 10, 30, 0.8);
+  background: var(--user-menu-bg);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 40px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(124,58,237,0.1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15), 0 0 60px rgba(124,58,237,0.05);
 }
 
 .auth-logo {
@@ -41,13 +41,13 @@
 .auth-title {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   margin: 0 0 6px;
   text-align: center;
 }
 
 .auth-subtitle {
-  color: rgba(255,255,255,0.4);
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin: 0 0 28px;
   text-align: center;
@@ -85,16 +85,16 @@
 .form-group label {
   font-size: 0.82rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-secondary);
   letter-spacing: 0.5px;
 }
 
 .form-group input {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px 16px;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 0.95rem;
   outline: none;
   transition: all 0.2s ease;
@@ -107,8 +107,15 @@
 }
 
 .form-group input::placeholder {
-  color: rgba(255,255,255,0.25);
+  color: var(--text-secondary);
+  opacity: 1;
 }
+
+/* Vendor specific placeholder styling */
+.form-group input::-webkit-input-placeholder { color: var(--text-secondary); opacity: 1; }
+.form-group input::-moz-placeholder { color: var(--text-secondary); opacity: 1; }
+.form-group input:-ms-input-placeholder { color: var(--text-secondary); opacity: 1; }
+.form-group input:-moz-placeholder { color: var(--text-secondary); opacity: 1; }
 
 .auth-submit-btn {
   margin-top: 8px;
@@ -152,17 +159,41 @@
 
 .auth-switch {
   text-align: center;
-  color: rgba(255,255,255,0.4);
+  color: var(--text-secondary);
   font-size: 0.88rem;
   margin: 20px 0 0;
 }
 
 .auth-switch a {
-  color: #a78bfa;
+  color: var(--purple-light);
   font-weight: 600;
   text-decoration: none;
 }
-.auth-switch a:hover { color: #f472b6; }
+.auth-switch a:hover { color: var(--pink-light); }
+
+/* ---- Light Mode High Contrast Overrides ---- */
+[data-theme="light"] .auth-card {
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .auth-title { color: #0f172a; }
+[data-theme="light"] .auth-subtitle { color: #64748b; }
+[data-theme="light"] .form-group label { color: #334155; }
+[data-theme="light"] .form-group input {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #0f172a;
+}
+[data-theme="light"] .form-group input:focus {
+  background: #ffffff;
+  border-color: #7c3aed;
+}
+[data-theme="light"] .form-group input::placeholder { color: #94a3b8; }
+[data-theme="light"] .form-group input::-webkit-input-placeholder { color: #94a3b8; }
+[data-theme="light"] .auth-switch { color: #64748b; }
+[data-theme="light"] .auth-switch a { color: #7c3aed; }
+[data-theme="light"] .auth-switch a:hover { color: #ec4899; }
 
 /* ---- Responsive ---- */
 @media (max-width: 480px) {
