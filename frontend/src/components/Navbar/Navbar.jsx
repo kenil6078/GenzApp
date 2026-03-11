@@ -65,7 +65,6 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
     setDropdownOpen(false);
     setMenuOpen(false);
   };

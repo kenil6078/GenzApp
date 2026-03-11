@@ -35,6 +35,7 @@ const signup = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      token, // fallback for strict browser cookie policies
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -66,6 +67,7 @@ const login = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      token, // fallback for strict browser cookie policies
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

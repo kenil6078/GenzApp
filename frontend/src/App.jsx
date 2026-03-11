@@ -32,6 +32,19 @@ const ProtectedRoute = ({ children, adminRequired }) => {
   return children;
 };
 
+const GuestRoute = ({ children }) => {
+  const { userInfo, isInitialized, loading } = useSelector((state) => state.user);
+
+  if (!isInitialized || loading) {
+    return <Loader fullScreen />;
+  }
+
+  // If user is already logged in, they shouldn't be at login/signup pages
+  if (userInfo) return <Navigate to="/" replace />;
+
+  return children;
+};
+
 const AppContent = () => {
   const dispatch = useDispatch();
   const { isInitialized } = useSelector((state) => state.user);
@@ -49,16 +62,16 @@ const AppContent = () => {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/tv" element={<TVShows />} />
-        <Route path="/people" element={<People />} />
-        <Route path="/movie/:id" element={<MovieDetails />} />
-        <Route path="/tv/:id" element={<MovieDetails />} />
-        <Route path="/person/:id" element={<PersonDetails />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/movies" element={<ProtectedRoute><Movies /></ProtectedRoute>} />
+        <Route path="/tv" element={<ProtectedRoute><TVShows /></ProtectedRoute>} />
+        <Route path="/people" element={<ProtectedRoute><People /></ProtectedRoute>} />
+        <Route path="/movie/:id" element={<ProtectedRoute><MovieDetails /></ProtectedRoute>} />
+        <Route path="/tv/:id" element={<ProtectedRoute><MovieDetails /></ProtectedRoute>} />
+        <Route path="/person/:id" element={<ProtectedRoute><PersonDetails /></ProtectedRoute>} />
+        <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
+        <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
+        <Route path="/signup" element={<GuestRoute><Signup /></GuestRoute>} />
         <Route
           path="/favorites"
           element={<ProtectedRoute><Favorites /></ProtectedRoute>}

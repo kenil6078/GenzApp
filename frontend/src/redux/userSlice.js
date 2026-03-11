@@ -4,6 +4,9 @@ import { loginUser, signupUser, getUserProfile, logoutUser } from '../services/a
 export const login = createAsyncThunk('user/login', async (credentials, { rejectWithValue }) => {
   try {
     const { data } = await loginUser(credentials);
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+    }
     return data;
   } catch (err) {
     return rejectWithValue(err.response?.data?.message || 'Login failed');
@@ -13,6 +16,9 @@ export const login = createAsyncThunk('user/login', async (credentials, { reject
 export const signup = createAsyncThunk('user/signup', async (userData, { rejectWithValue }) => {
   try {
     const { data } = await signupUser(userData);
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+    }
     return data;
   } catch (err) {
     return rejectWithValue(err.response?.data?.message || 'Signup failed');
@@ -30,9 +36,13 @@ export const fetchProfile = createAsyncThunk('user/fetchProfile', async (_, { re
 
 export const logout = createAsyncThunk('user/logout', async (_, { rejectWithValue }) => {
   try {
+    localStorage.removeItem('token');
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     await logoutUser();
     return null;
   } catch (err) {
+    localStorage.removeItem('token');
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     return rejectWithValue(err.response?.data?.message || 'Logout failed');
   }
 });

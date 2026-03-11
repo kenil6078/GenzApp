@@ -6,6 +6,15 @@ const api = axios.create({
   withCredentials: true, // Crucial for sending cookies with requests
 });
 
+// Fallback for when browsers block cross-origin cookies
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 // Auth
 export const signupUser = (data) => api.post('/auth/signup', data);
 export const loginUser = (data) => api.post('/auth/login', data);
