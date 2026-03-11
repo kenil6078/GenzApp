@@ -1,9 +1,10 @@
 require('dotenv').config();
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
-const connectDB = require('./config/db');
+const path = require('path');
 const cookieParser = require('cookie-parser');
+
+const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/authRoutes');
 const movieRoutes = require('./routes/movieRoutes');
@@ -14,52 +15,95 @@ const tmdbRoutes = require('./routes/tmdbRoutes');
 
 const app = express();
 
-// Connect to MongoDB
+// Connect MongoDB
 connectDB();
 
-// Middlewares
+
+// ========================
+// CORS CONFIGURATION
+// ========================
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://genz-app-zeta.vercel.app"
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Mirrors the incoming origin, allowing Vercel and localhost requests
-  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("CORS not allowed"));
+    }
+  },
+  credentials: true
 }));
+
+// Handle preflight requests
+app.options("*", cors());
+
+
+// ========================
+// MIDDLEWARES
+// ========================
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Routes
+
+// ========================
+// API ROUTES
+// ========================
+
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/favorites', favoriteRoutes);
 app.use('/api/history', historyRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/tmdb', tmdbRoutes); // TMDB proxy — avoids browser DNS/ALPN issues
+app.use('/api/tmdb', tmdbRoutes);
 
-// Health check
+
+// ========================
+// HEALTH CHECK
+// ========================
+
 app.get('/', (req, res) => {
-  res.json({ message: 'GenZ Movie API is running 🎬' });
+  res.json({ message: "GenZ Movie API running 🎬" });
 });
 
-// Serve frontend
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
-//   });
-// } else {
-//   // 404 handler
-//   app.use((req, res) => {
-//     res.status(404).json({ message: 'Route not found' });
-//   });
-// }
+// ========================
+// 404 ROUTE HANDLER
+// ========================
 
-// Global error handler
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+
+// ========================
+// GLOBAL ERROR HANDLER
+// ========================
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ message: err.message || 'Internal Server Error' });
+
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || "Internal Server Error"
+  });
 });
 
+
+// ========================
+// START SERVER
+// ========================
+
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
