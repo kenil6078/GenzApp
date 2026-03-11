@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Helvetica Now Display";
-  src: url("./font/HelveticaNowDisplay-Medium.ttf") format("woff2");
+  src: url("/Fonts/HelveticaNowDisplay-Medium.ttf") format("woff2");
 }
 
 *, *::before, *::after {

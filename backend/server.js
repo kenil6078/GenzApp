@@ -19,8 +19,11 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-  // In production, FRONTEND_URL should be set to the actual frontend URL (e.g., https://genz-app-zeta.vercel.app)
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: [
+    process.env.FRONTEND_URL,
+    'http://localhost:5173',
+    'https://genz-app-zeta.vercel.app'
+  ].filter(Boolean),
   credentials: true,
 }));
 app.use(express.json());
