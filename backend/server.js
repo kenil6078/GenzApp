@@ -19,7 +19,7 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-  origin:process.env.FRONTEND_URL,
+  origin: true, // Mirrors the incoming origin, allowing Vercel and localhost requests
   credentials: true,
 }));
 app.use(express.json());
