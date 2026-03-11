@@ -170,6 +170,22 @@ img { display: block; max-width: 100%; }
 }
 
 /* =====================
+   SHARED ERROR MESSAGE
+   ===================== */
+.details-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  margin-top: 80px;
+  padding: 40px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 500;
+}
+
+/* =====================
    PAGE WRAPPER UTILITY
    ===================== */
 .page-wrapper {

@@ -24,7 +24,7 @@ const PersonDetails = () => {
   }, [id]);
 
   if (loading) return <div style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:'100vh'}}><Loader /></div>;
-  if (!person) return <div style={{textAlign:'center',padding:'120px 24px',color:'rgba(255,255,255,0.5)'}}>Person not found.</div>;
+  if (!person) return <div className="details-error"><p>Person not found.</p></div>;
 
   const photo = person.profile_path ? `${TMDB_IMAGE_W500}${person.profile_path}` : PLACEHOLDER_IMAGE;
   const movieCredits = person.movie_credits?.cast?.slice(0, 12) || [];
