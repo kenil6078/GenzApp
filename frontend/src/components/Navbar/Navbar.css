@@ -12,10 +12,10 @@
 }
 
 .navbar-scrolled {
-  background: rgba(8, 8, 20, 0.92);
+  background: var(--nav-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -75,7 +75,7 @@
 .nav-link {
   display: inline-block;
   padding: 8px 14px;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -85,8 +85,8 @@
 }
 
 .nav-link:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-primary);
+  background: var(--glass-bg);
 }
 
 .nav-link.active {
@@ -138,20 +138,20 @@
   background: none;
   border: none;
   outline: none;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 0.88rem;
   padding: 10px 0;
   min-width: 0;
 }
 
 .search-input-desktop::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-muted);
 }
 
 .search-clear-btn {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
   border: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
   cursor: pointer;
   font-size: 0.72rem;
   width: 20px;
@@ -169,6 +169,32 @@
 }
 
 /* =====================
+   THEME TOGGLE
+   ===================== */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  color: var(--icon-color);
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+}
+
+.theme-toggle svg {
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+/* =====================
    RIGHT ACTIONS
    ===================== */
 .navbar-actions {
@@ -183,7 +209,7 @@
   display: none;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--icon-color);
   font-size: 1rem;
   cursor: pointer;
   padding: 6px;
@@ -193,7 +219,7 @@
   align-items: center;
   justify-content: center;
 }
-.mobile-search-toggle:hover { color: #fff; }
+.mobile-search-toggle:hover { color: var(--text-primary); }
 
 /* =====================
    USER MENU
@@ -227,9 +253,9 @@
   top: calc(100% + 14px);
   right: 0;
   min-width: 210px;
-  background: rgba(12, 10, 28, 0.97);
+  background: var(--user-menu-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
@@ -243,20 +269,20 @@
 
 .dropdown-header {
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-.dropdown-header span { color: #fff; font-weight: 600; font-size: 0.88rem; }
-.dropdown-header small { color: rgba(255, 255, 255, 0.35); font-size: 0.72rem; }
+.dropdown-header span { color: var(--text-primary); font-weight: 600; font-size: 0.88rem; }
+.dropdown-header small { color: var(--text-muted); font-size: 0.72rem; }
 
 .user-dropdown a,
 .user-dropdown button {
   display: block;
   width: 100%;
   padding: 11px 16px;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.86rem;
   font-family: inherit;
@@ -268,8 +294,8 @@
 }
 .user-dropdown a:hover,
 .user-dropdown button:hover {
-  background: rgba(167, 139, 250, 0.08);
-  color: #fff;
+  background: var(--glass-bg);
+  color: var(--text-primary);
 }
 .logout-btn {
   border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
@@ -289,13 +315,13 @@
 .btn-login {
   padding: 8px 16px;
   border-radius: 9px;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.88rem;
   font-weight: 500;
   transition: color 0.2s;
 }
-.btn-login:hover { color: #fff; }
+.btn-login:hover { color: var(--text-primary); }
 
 .btn-signup {
   padding: 8px 18px;
@@ -332,7 +358,7 @@
   display: block;
   width: 100%;
   height: 2px;
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--icon-color);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -356,8 +382,8 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px 14px;
-  background: rgba(8, 8, 20, 0.95);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--mobile-menu-bg);
+  border-top: 1px solid var(--border);
   animation: slideDown 0.2s ease;
 }
 
@@ -368,11 +394,11 @@
 
 .search-input-mobile {
   flex: 1;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 10px 14px;
-  color: #fff;
+  color: var(--text-primary);
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.2s;
@@ -380,7 +406,7 @@
 .search-input-mobile:focus {
   border-color: rgba(167, 139, 250, 0.5);
 }
-.search-input-mobile::placeholder { color: rgba(255, 255, 255, 0.3); }
+.search-input-mobile::placeholder { color: var(--text-muted); }
 
 /* =====================
    MOBILE MENU DRAWER
@@ -388,9 +414,9 @@
 .mobile-menu {
   display: none;
   flex-direction: column;
-  background: rgba(8, 8, 20, 0.97);
+  background: var(--mobile-menu-bg);
   backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid var(--border);
   padding: 8px 16px 20px;
   gap: 2px;
   max-height: 0;
@@ -406,7 +432,7 @@
 .mobile-nav-link {
   display: block;
   padding: 12px 16px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
   text-decoration: none;
   border-radius: 10px;
   font-size: 0.95rem;
@@ -421,7 +447,7 @@
 
 .mobile-menu-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--border);
   margin: 8px 0;
 }
 
@@ -450,12 +476,12 @@
 .mobile-user-info p {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   margin: 0;
 }
 .mobile-user-info small {
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-muted);
 }
 
 .mobile-logout-btn {
@@ -485,15 +511,15 @@
   flex: 1;
   padding: 12px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   text-decoration: none;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border);
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.2s;
 }
-.mobile-btn-login:hover { background: rgba(255, 255, 255, 0.06); }
+.mobile-btn-login:hover { background: var(--input-bg); color: var(--text-primary); }
 
 .mobile-btn-signup {
   flex: 1;

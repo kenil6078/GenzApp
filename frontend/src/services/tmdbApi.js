@@ -13,14 +13,23 @@ const tmdb = axios.create({
   },
 });
 
-export const getTrending = (mediaType = 'all', timeWindow = 'day') =>
-  tmdb.get(`/trending/${mediaType}/${timeWindow}`);
+export const getTrending = (mediaType = 'all', timeWindow = 'day', page = 1) =>
+  tmdb.get(`/trending/${mediaType}/${timeWindow}`, { params: { page } });
 
 export const getPopularMovies = (page = 1) =>
   tmdb.get('/movie/popular', { params: { page } });
 
 export const getPopularTVShows = (page = 1) =>
   tmdb.get('/tv/popular', { params: { page } });
+
+export const getTopRatedTVShows = (page = 1) =>
+  tmdb.get('/tv/top_rated', { params: { page } });
+
+export const getOnTheAirTVShows = (page = 1) =>
+  tmdb.get('/tv/on_the_air', { params: { page } });
+
+export const discoverTVShowsByGenre = (genreId, page = 1) =>
+  tmdb.get('/discover/tv', { params: { with_genres: genreId, page } });
 
 export const getTopRatedMovies = (page = 1) =>
   tmdb.get('/movie/top_rated', { params: { page } });
